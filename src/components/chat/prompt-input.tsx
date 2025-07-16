@@ -5,11 +5,11 @@ import { Textarea } from "../ui/textarea";
 export const PromptInput = ({
   value,
   onChange,
-  isLoading,
+  isPending,
 }: {
   value: string;
   onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
-  isLoading: boolean;
+  isPending: boolean;
 }) => {
   return (
     <div className="w-full flex flex-col gap-4">
@@ -27,7 +27,7 @@ export const PromptInput = ({
           type="submit"
           disabled={value === ""}
         >
-          {isLoading ? (
+          {isPending ? (
             <Loader2Icon className="animate-spin" />
           ) : (
             <SendHorizonal />

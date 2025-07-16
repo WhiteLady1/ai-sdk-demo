@@ -30,7 +30,7 @@ export const Chat = () => {
         <PromptInput
           value={input}
           onChange={handleInputChange}
-          isLoading={status === "submitted" || status === "streaming"}
+          isPending={status === "submitted" || status === "streaming"}
         />
       </form>
     </>
