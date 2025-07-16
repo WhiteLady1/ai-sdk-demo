@@ -11,7 +11,7 @@ This application serves as a showcase of different ways to use Vercel AI SDK. Ea
 
 ## Technologies
 
-- [Next.js 14](https://nextjs.org/) - React framework
+- [Next.js 15](https://nextjs.org/) - React framework
 - [Vercel AI SDK](https://ai-sdk.dev/) - AI integration
 - [TypeScript](https://www.typescriptlang.org/) - Type safety
 - [Tailwind CSS](https://tailwindcss.com/) - Styling

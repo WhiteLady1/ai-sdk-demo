@@ -2,34 +2,25 @@
 
 import * as React from "react";
 import { Greetings } from "./greetings";
-import { MessageItemProps } from "./message-item";
 import { Messages } from "./messages";
 import { PromptInput } from "./prompt-input";
+import { useChat } from "@ai-sdk/react";
 
 export const Chat = () => {
-  const [isLoading, setIsLoading] = React.useState(false);
-  const [message, setMessage] = React.useState("");
-  const [messages, setMessages] = React.useState<MessageItemProps[]>([]);
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setIsLoading(true);
-    const formData = new FormData(e.target as HTMLFormElement);
-    const message = formData.get("message") as string;
-    setMessages([
-      ...messages,
-      { role: "user", content: message, isLoading: true },
-    ]);
-    console.log(message);
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 2000);
-  };
+  const { messages, input, status, handleInputChange, handleSubmit } =
+    useChat();
 
   return (
     <>
       <div className="flex flex-col min-w-0 w-full max-w-xl mx-auto gap-6 flex-1 overflow-y-scroll pt-4 relative">
-        {messages.length > 0 ? <Messages messages={messages} /> : <Greetings />}
+        {messages.length > 0 ? (
+          <Messages
+            messages={messages}
+            isLoading={status === "submitted"}
+          />
+        ) : (
+          <Greetings />
+        )}
       </div>
 
       <form
@@ -37,9 +28,9 @@ export const Chat = () => {
         className="flex mx-auto px-4 bg-background pb-4 md:pb-6 gap-2 w-full max-w-xl"
       >
         <PromptInput
-          value={message}
-          onChange={(e) => setMessage(e.target.value)}
-          isLoading={isLoading}
+          value={input}
+          onChange={handleInputChange}
+          isLoading={status === "submitted" || status === "streaming"}
         />
       </form>
     </>

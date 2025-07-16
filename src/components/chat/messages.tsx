@@ -1,15 +1,21 @@
-import { MessageItem, MessageItemProps } from "./message-item";
+import { UIMessage } from "ai";
+import { MessageItem } from "./message-item";
 
-export const Messages = ({ messages }: { messages: MessageItemProps[] }) => {
-  console.log(messages);
+export const Messages = ({
+  messages,
+  isLoading,
+}: {
+  messages: UIMessage[];
+  isLoading: boolean;
+}) => {
   return (
-    <div className="md:mt-20 px-8 size-full flex flex-col gap-4">
+    <div className="md:mt-20 px-4 size-full flex flex-col gap-7">
       {messages.map((message) => (
         <MessageItem
-          key={message.content}
-          role={message.role}
+          key={message.id}
+          role={message.role === "user" ? "user" : "ai"}
           content={message.content}
-          isLoading={message.isLoading}
+          isLoading={isLoading}
         />
       ))}
     </div>

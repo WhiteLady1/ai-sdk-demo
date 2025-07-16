@@ -5,7 +5,7 @@ const AI = "ai" as const;
 
 export type Role = typeof USER | typeof AI;
 
-export interface MessageItemProps {
+interface MessageItemProps {
   role: Role;
   author?: string;
   content: string;
