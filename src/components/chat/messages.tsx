@@ -9,7 +9,7 @@ export const Messages = ({ messages }: { messages: MessageItemProps[] }) => {
           key={message.content}
           role={message.role}
           content={message.content}
-          isLoading={message.isLoading}
+          isPending={message.isPending}
         />
       ))}
     </div>

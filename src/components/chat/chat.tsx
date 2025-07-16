@@ -7,22 +7,22 @@ import { Messages } from "./messages";
 import { PromptInput } from "./prompt-input";
 
 export const Chat = () => {
-  const [isLoading, setIsLoading] = React.useState(false);
+  const [isPending, setIsPending] = React.useState(false);
   const [message, setMessage] = React.useState("");
   const [messages, setMessages] = React.useState<MessageItemProps[]>([]);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setIsLoading(true);
+    setIsPending(true);
     const formData = new FormData(e.target as HTMLFormElement);
     const message = formData.get("message") as string;
     setMessages([
       ...messages,
-      { role: "user", content: message, isLoading: true },
+      { role: "user", content: message, isPending: true },
     ]);
     console.log(message);
     setTimeout(() => {
-      setIsLoading(false);
+      setIsPending(false);
     }, 2000);
   };
 
@@ -39,7 +39,7 @@ export const Chat = () => {
         <PromptInput
           value={message}
           onChange={(e) => setMessage(e.target.value)}
-          isLoading={isLoading}
+          isPending={isPending}
         />
       </form>
     </>
