@@ -16,7 +16,7 @@ export const Chat = () => {
         {messages.length > 0 ? (
           <Messages
             messages={messages}
-            isLoading={status === "submitted"}
+            isPending={status === "submitted"}
           />
         ) : (
           <Greetings />
