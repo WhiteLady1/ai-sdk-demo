@@ -2,8 +2,7 @@
 
 import * as React from "react";
 import { Greetings } from "./greetings";
-import { MessageItemProps } from "./message-item";
-import { Messages } from "./messages";
+import { MessageItem, MessageItemProps } from "./message-item";
 import { PromptInput } from "./prompt-input";
 
 export const Chat = () => {
@@ -29,7 +28,20 @@ export const Chat = () => {
   return (
     <>
       <div className="flex flex-col min-w-0 w-full max-w-xl mx-auto gap-6 flex-1 overflow-y-scroll pt-4 relative">
-        {messages.length > 0 ? <Messages messages={messages} /> : <Greetings />}
+        {messages.length > 0 ? (
+          <div className="md:mt-20 px-4 size-full flex flex-col gap-4">
+            {messages.map((message) => (
+              <MessageItem
+                key={message.content}
+                role={message.role}
+                content={message.content}
+                isPending={message.isPending}
+              />
+            ))}
+          </div>
+        ) : (
+          <Greetings />
+        )}
       </div>
 
       <form
