@@ -17,9 +17,9 @@ export const Chat = () => {
     const formData = new FormData(e.target as HTMLFormElement);
     const message = formData.get("message") as string;
     setMessages([...messages, { role: "user", content: message }]);
-    console.log(prompt);
     setTimeout(() => {
       setIsPending(false);
+      setPrompt("");
     }, 2000);
   };
 
