@@ -4,7 +4,6 @@ import * as React from "react";
 import { Greetings } from "./greetings";
 import { MessageItem, MessageItemProps } from "./message-item";
 import { PromptInput } from "./prompt-input";
-import { Squirrel } from "lucide-react";
 import { Loading } from "../ui/loading";
 
 export const Chat = () => {
