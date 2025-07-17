@@ -7,7 +7,7 @@ import { PromptInput } from "./prompt-input";
 
 export const Chat = () => {
   const [isPending, setIsPending] = React.useState(false);
-  const [message, setMessage] = React.useState("");
+  const [prompt, setPrompt] = React.useState("");
   const [messages, setMessages] = React.useState<MessageItemProps[]>([]);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -19,7 +19,7 @@ export const Chat = () => {
       ...messages,
       { role: "user", content: message, isPending: true },
     ]);
-    console.log(message);
+    console.log(prompt);
     setTimeout(() => {
       setIsPending(false);
     }, 2000);
@@ -49,8 +49,8 @@ export const Chat = () => {
         className="flex mx-auto px-4 bg-background pb-4 md:pb-6 gap-2 w-full max-w-xl"
       >
         <PromptInput
-          value={message}
-          onChange={(e) => setMessage(e.target.value)}
+          value={prompt}
+          onChange={(e) => setPrompt(e.target.value)}
           isPending={isPending}
         />
       </form>
