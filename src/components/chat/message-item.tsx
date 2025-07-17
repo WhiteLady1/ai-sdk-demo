@@ -8,13 +8,8 @@ export type Role = typeof USER | typeof AI;
 export interface MessageItemProps {
   role: Role;
   content: string;
-  isPending?: boolean;
 }
-export const MessageItem = ({
-  role,
-  content,
-  isPending = false,
-}: MessageItemProps) => {
+export const MessageItem = ({ role, content }: MessageItemProps) => {
   return (
     <div className="flex flex-col gap-2">
       {role === USER && (
@@ -30,11 +25,7 @@ export const MessageItem = ({
             <span className="flex items-center justify-center rounded-full p-2 w-10 h-10 bg-stone-100">
               <Squirrel className=" stroke-stone-800" />
             </span>
-            {isPending ? (
-              <p className="animate-pulse">Hm...</p>
-            ) : (
-              <p>{content}</p>
-            )}
+            <p>{content}</p>
           </div>
         </div>
       )}

@@ -4,6 +4,8 @@ import * as React from "react";
 import { Greetings } from "./greetings";
 import { MessageItem, MessageItemProps } from "./message-item";
 import { PromptInput } from "./prompt-input";
+import { Squirrel } from "lucide-react";
+import { Loading } from "../ui/loading";
 
 export const Chat = () => {
   const [isPending, setIsPending] = React.useState(false);
@@ -15,10 +17,7 @@ export const Chat = () => {
     setIsPending(true);
     const formData = new FormData(e.target as HTMLFormElement);
     const message = formData.get("message") as string;
-    setMessages([
-      ...messages,
-      { role: "user", content: message, isPending: true },
-    ]);
+    setMessages([...messages, { role: "user", content: message }]);
     console.log(prompt);
     setTimeout(() => {
       setIsPending(false);
@@ -35,9 +34,9 @@ export const Chat = () => {
                 key={message.content}
                 role={message.role}
                 content={message.content}
-                isPending={message.isPending}
               />
             ))}
+            {isPending && <Loading />}
           </div>
         ) : (
           <Greetings />
